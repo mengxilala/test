@@ -547,7 +547,27 @@ Animation:
 具体：http://www.w3cplus.com/css3/flexbox-basics.html
 
 
+2018/3/13
+
+1.如何html中开启和关闭DNS预读取？
+参考网页：https://developer.mozilla.org/zh-CN/docs/Controlling_DNS_prefetching
+通过X-DNS-Prefetch-Control: on/off来设置。
+
+X-DNS-Prefetch-Control的功能是:
+X-DNS-Prefetch-Control控制着浏览器的预读取功能，它可以使得浏览器主动去执行域名解析的功能，包括文档中所有的链接。预读取会在后台执行，所以DNS很可能在链接对应的东西出现之前就已经解析完毕。这样能够减少用户点击链接时的延迟。
+
+为什么要预读取:
+DNS请求带宽很小，但一旦涉及到多级解析，或者很少访问到的网站，需要从服务器硬盘中查找域名时，这时延迟就会比较高。这点在手机网络上特别明显。因此预读取可以使得解析提早完成，减少延迟。
+
+打开和关闭DNS预读取：
+
+<meta http-equiv="x-dns-prefetch-control" content="off">
+强制查询特定主机名：
+
+<link rel="dns-prefetch" href="http://www.spreadfirefox.com/">
+<link rel="dns-prefetch" href="//www.spreadfirefox.com">
 
 
-
+2.<script>标签defer和async属性的作用，以及二者的区别？
+若没有defer和async，浏览器遇到<script>标签会立即加载并执行该脚本，且停止加载和渲染文档元素。有了defer和async时，浏览器就可以异步加载脚本，不影响文档的加载和渲染。但defer和async有一定区别，在于async会使得脚本加载完则立即执行，而defer会延迟到页面元素解析完毕后再执行。
 
